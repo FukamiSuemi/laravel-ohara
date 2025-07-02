@@ -9,58 +9,66 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
+    <form action="{{route('contacts.store')}}" method="post">
+      @csrf
     <section class="text-gray-600 body-font relative">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="flex flex-col text-center w-full mb-12">
+  <div class="container px-5 py-12 mx-auto">
+    <div class="flex flex-col text-center w-full mb-4">
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">お問い合わせフォーム</h1>
     </div>
-    <div class="lg:w-1/2 md:w-2/3 mx-auto">
+    <div class="lg:w-1/2 md:w-2/3 mx-auto flex items-center justify-center">
       <div class="-m-2">
-        <div class="p-2 w-1/2">
+        <div class="p-2 w-full">
           <div class="relative">
             <label for="name" class="leading-7 text-sm text-gray-600">お名前</label>
             <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div>
         </div>
-        <div class="p-2 w-1/2">
+        <div class="p-2 w-full">
           <div class="relative">
-            <label for="title" class="leading-7 text-sm text-gray-600">メールアドレス</label>
-            <input type="text" id="name" name="name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label for="title" class="leading-7 text-sm text-gray-600">件名</label>
+            <input type="text" id="title" name="title" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div>
         </div>
-        <div class="p-2 w-1/2">
+        <div class="p-2 w-full">
           <div class="relative">
-            <label for="url" class="leading-7 text-sm text-gray-600">件名</label>
-            <input type="url" id="url" name="url" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-          </div>
-        </div>
-        <div class="p-2 w-1/2">
-          <div class="relative">
-            <label for="email" class="leading-7 text-sm text-gray-600">URL</label>
+            <label for="email" class="leading-7 text-sm text-gray-600">メールアドレス</label>
             <input type="email" id="email" name="email" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div>
         </div>
-        <div class="p-2 w-1/2">
+        <div class="p-2 w-full">
           <div class="relative">
-            <label for="gender" class="leading-7 text-sm text-gray-600">性別</label>
-            <input type="text" id="gender" name="gender" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label for="url" class="leading-7 text-sm text-gray-600">URL</label>
+            <input type="url" id="url" name="url" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
           </div>
         </div>
-        <div class="p-2 w-1/2">
+        <div class="p-2 w-full">
+          <div class="relative">
+            <label for="gender" class="leading-7 text-sm text-gray-600">性別</label>
+            <input type="radio" id="gender" name="gender" value="0" class="mr-2">男性
+            <input type="radio" id="gender" name="gender" value="1" class="mr-2">女性
+          </div>
+        </div>
+        <div class="p-2 w-full">
           <div class="relative">
             <label for="age" class="leading-7 text-sm text-gray-600">年齢</label>
-            <input type="text" id="age" name="age" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <select name="age" id="age">
+            @for ($i=10;$i<81;$i++)
+              <option value="{{$i}}">{{$i}}歳</option>
+            @endfor
+            </select>
           </div>
         </div>
         <div class="p-2 w-full">
           <div class="relative">
             <label for="contact" class="leading-7 text-sm text-gray-600">お問い合わせ内容</label>
-            <textarea id="text" name="contact" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+            <textarea id="contact" name="contact" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
           </div>
         </div>
         <div class="p-2 w-full">
           <button class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">送信</button>
         </div>
+    </form>
         <div class="p-2 w-full pt-8 mt-8 border-t border-gray-200 text-center">
           <a class="text-indigo-500">example@email.com</a>
           <p class="leading-normal my-5">49 Smith St.
