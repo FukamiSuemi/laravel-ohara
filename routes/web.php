@@ -16,6 +16,9 @@ Route::prefix('contacts') // 頭に contacts をつける
 	Route::get('/', 'index')->name('index'); 
     Route::get('/create','create')->name('create');
     Route::post('/','store')->name('store');
+    Route::get('/{id}', 'show')->name('show'); 
+    Route::get('/{id}/edit', 'edit')->name('edit'); 
+    Route::post('/{id}', 'update')->name('update'); 
 }); 
 
 
