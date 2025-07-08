@@ -13,9 +13,12 @@ class ContactFormController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = ContactForm::select('id','name','title','gender','created_at')->get();
+        $search = $request->search;
+        $query = ContactForm::search($search);
+        $contacts = $query->select('id','name','title','gender','created_at')->paginate(20);
+        // $contacts = ContactForm::select('id','name','title','gender','created_at')->paginate(20);
         //
         // if($contacts->gender === 0){
         //     $gender = '男性';
@@ -51,7 +54,7 @@ class ContactFormController extends Controller
         'age'=> $request->age,
         'contact'=> $request->contact,
         ]);
-        return to_route('contacts.index'); 
+        return to_route('contacts.index')->with('message','お問い合わせを登録できました'); 
     }
 
     /**

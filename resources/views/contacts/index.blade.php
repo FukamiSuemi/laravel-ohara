@@ -11,9 +11,19 @@
                 <div class="p-6 text-gray-900">
                 <section class="text-gray-600 body-font">
   <div class="container px-5 py-24 mx-auto">
+
+    {{-- @if (session('message'))
+      {{session('message')}}
+    @endif --}}
+    <x-flash-message status="info"></x-flash-message>
     <div class="flex flex-col text-center w-full mb-20">
       <h1 class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900">お問い合わせ一覧</h1>
     </div>
+
+    <form method="get" action="{{route('contacts.index')}}">
+      <input type="text" name="search" placeholder="検索">
+      <input type="submit" value="検索する" class="mx-auto mb-12 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+    </form>
     <div class="lg:w-2/3 w-full mx-auto overflow-auto">
       <table class="table-auto w-full text-left whitespace-no-wrap">
         <thead>
@@ -45,6 +55,7 @@
         @endforeach
         </tbody>
       </table>
+      {{$contacts->links()}}
     </div>
   </div>
 </section>
